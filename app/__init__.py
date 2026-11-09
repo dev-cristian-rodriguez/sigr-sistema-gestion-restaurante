@@ -24,8 +24,8 @@ def create_app(config=None):
     with app.app_context():
         db.init_db()
 
-    from app import auth
-    for modulo in (auth,):
+    from app import auth, menu
+    for modulo in (auth, menu,):
         app.register_blueprint(modulo.bp)
 
     @app.get("/health")
