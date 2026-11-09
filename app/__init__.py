@@ -24,6 +24,10 @@ def create_app(config=None):
     with app.app_context():
         db.init_db()
 
+    from app import auth
+    for modulo in (auth,):
+        app.register_blueprint(modulo.bp)
+
     @app.get("/health")
     def health():
         return jsonify(status="ok")
